@@ -286,15 +286,13 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: #00ffcc url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Star_icon-72a7cf.svg/24px-Star_icon-72a7cf.svg.png') no-repeat 10px center;
-    background-size: 20px 20px;
-    color: black;
-    border: none;
-    border-radius: 12px;
-    padding: 10px 20px 10px 40px;
+    background: url('https://elomstarship.github.io/elonstarship/assets/starbot_helmet_ai.png') no-repeat center center;
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+    border: 3px solid #00ffcc;
+    border-radius: 50%;
     cursor: pointer;
-    font-weight: bold;
-    font-family: 'Orbitron', sans-serif;
     z-index: 9999;
     box-shadow: 0 0 10px #00ffcc;
   }
@@ -308,7 +306,7 @@
     <button onclick="sendToStarbot()">→</button>
   </div>
 </div>
-<button id="starbot-toggle" onclick="toggleStarbot()">Chat with StarBot</button>
+<button id="starbot-toggle" onclick="toggleStarbot()" aria-label="Chat with StarBot"></button>
 
 <script>
   const OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"; // Ersetzen mit echtem Key
