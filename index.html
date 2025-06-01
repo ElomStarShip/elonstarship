@@ -232,6 +232,116 @@
     <p>&copy; 2025 Elon Starship. All systems go.</p>
     <p>elonstarship2025@gmail.com<p>
   </footer>
+  <!-- === StarBot Chat-KI === -->
+<style>
+  #starbot-chatbox {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    max-height: 500px;
+    background: #000;
+    color: #0f0;
+    border: 2px solid #0f0;
+    border-radius: 12px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9999;
+    font-family: monospace;
+  }
+  #starbot-header {
+    background: #111;
+    padding: 8px;
+    font-weight: bold;
+    text-align: center;
+  }
+  #starbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+  #starbot-input {
+    display: flex;
+    border-top: 1px solid #0f0;
+  }
+  #starbot-input input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    outline: none;
+    background: #111;
+    color: #0f0;
+  }
+  #starbot-input button {
+    background: #0f0;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  #starbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 360px;
+    background: #0f0;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 9999;
+  }
+</style>
+
+<div id="starbot-chatbox">
+  <div id="starbot-header">🤖 StarBot – Ask me anything!</div>
+  <div id="starbot-messages"></div>
+  <div id="starbot-input">
+    <input type="text" id="starbot-question" placeholder="Ask your question..." />
+    <button onclick="sendToStarbot()">→</button>
+  </div>
+</div>
+<button id="starbot-toggle" onclick="toggleStarbot()">Chat with StarBot</button>
+
+<script>
+  const OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"; // Ersetzen!
+
+  function toggleStarbot() {
+    const box = document.getElementById('starbot-chatbox');
+    box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  async function sendToStarbot() {
+    const input = document.getElementById('starbot-question');
+    const messagesDiv = document.getElementById('starbot-messages');
+    const question = input.value;
+    if (!question) return;
+
+    messagesDiv.innerHTML += `<div><strong>You:</strong> ${question}</div>`;
+    input.value = '';
+
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4",
+        messages: [{ role: "user", content: question }]
+      })
+    });
+
+    const data = await response.json();
+    const answer = data.choices?.[0]?.message?.content || "Hmm... I couldn't find an answer.";
+    messagesDiv.innerHTML += `<div><strong>StarBot:</strong> ${answer}</div>`;
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+</script>
+<!-- === Ende StarBot === -->
+
  
 
 </body>
