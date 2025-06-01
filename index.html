@@ -325,14 +325,14 @@
   messagesDiv.innerHTML += `<div><strong>You:</strong> ${question}</div>`;
   input.value = '';
 
-  const response = await fetch("https://starbot-api.onrender.com/starbot",{
+  const response = await fetch("https://starbot-api.onrender.com/starbot", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ message: question })
+});
 
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ message: question })
-  });
 
   const data = await response.json();
   const answer = data.response || "Hmm... I couldn't find an answer.";
