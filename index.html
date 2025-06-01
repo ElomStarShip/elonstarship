@@ -236,35 +236,36 @@
 <style>
   #starbot-chatbox {
     position: fixed;
-    bottom: 20px;
+    bottom: 100px;
     right: 20px;
     width: 320px;
     max-height: 500px;
-    background: #000;
-    color: #0f0;
-    border: 2px solid #0f0;
+    background: rgba(0, 0, 0, 0.85);
+    color: #00ffcc;
+    border: 2px solid #00ffcc;
     border-radius: 12px;
     display: none;
     flex-direction: column;
     overflow: hidden;
     z-index: 9999;
-    font-family: monospace;
+    font-family: 'Orbitron', sans-serif;
   }
   #starbot-header {
-    background: #111;
+    background: rgba(0, 0, 0, 0.95);
     padding: 8px;
     font-weight: bold;
     text-align: center;
+    border-bottom: 1px solid #00ffcc;
   }
   #starbot-messages {
     flex: 1;
     padding: 10px;
     overflow-y: auto;
-    font-size: 14px;
+    font-size: 13px;
   }
   #starbot-input {
     display: flex;
-    border-top: 1px solid #0f0;
+    border-top: 1px solid #00ffcc;
   }
   #starbot-input input {
     flex: 1;
@@ -272,26 +273,30 @@
     border: none;
     outline: none;
     background: #111;
-    color: #0f0;
+    color: #00ffcc;
   }
   #starbot-input button {
-    background: #0f0;
+    background: #00ffcc;
     border: none;
     padding: 8px 12px;
     cursor: pointer;
+    color: black;
   }
   #starbot-toggle {
     position: fixed;
     bottom: 20px;
-    right: 360px;
-    background: #0f0;
-    color: #000;
+    right: 20px;
+    background: #00ffcc url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Star_icon-72a7cf.svg/24px-Star_icon-72a7cf.svg.png') no-repeat 10px center;
+    background-size: 20px 20px;
+    color: black;
     border: none;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 12px;
+    padding: 10px 20px 10px 40px;
     cursor: pointer;
     font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
     z-index: 9999;
+    box-shadow: 0 0 10px #00ffcc;
   }
 </style>
 
@@ -306,7 +311,7 @@
 <button id="starbot-toggle" onclick="toggleStarbot()">Chat with StarBot</button>
 
 <script>
-  const OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"; // Ersetzen!
+  const OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"; // Ersetzen mit echtem Key
 
   function toggleStarbot() {
     const box = document.getElementById('starbot-chatbox');
