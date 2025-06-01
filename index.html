@@ -302,10 +302,10 @@
   <div id="starbot-header">🤖 StarBot – Ask me anything!</div>
   <div id="starbot-messages"></div>
   <div id="starbot-input">
-    <input type="text" id="starbot-question" placeholder="Ask your question..." />
-    <button onclick="sendToStarbot()">Send</button>
+  <input type="text" id="starbot-question" placeholder="Ask your question..." onkeypress="if(event.key === 'Enter') sendToStarbot()">
+  <button onclick="sendToStarbot()">Send</button>
+</div>
 
-  </div>
 </div>
 <button id="starbot-toggle" onclick="toggleStarbot()" aria-label="Chat with StarBot"></button>
 
